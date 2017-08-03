@@ -4,6 +4,8 @@
 For more details: http://wave.webaim.org/api/details
 Gem is untested and is a quick wrapper around HTTParty.
 
+This can be used to create reports on WCAG 2.0 and Section 508 compliance.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -31,6 +33,16 @@ wave.request
 wave.status
 wave.statistics
 wave.categories
+```
+
+JSON report:
+```ruby
+require 'wave_client'
+require 'json'
+wave = WaveClient.new('token', 'google.com', 3)
+File.open("error.json","w") do |f|
+    f.write(JSON.pretty_generate(wave.categories))
+end
 ```
 
 ## Development
